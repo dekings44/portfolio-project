@@ -1,8 +1,6 @@
-
-  <!doctype html>
+ <!doctype html>
   <html lang="en">
   {% load staticfiles %}
-
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,37 +44,33 @@
       <div class="navbar-nav ml-auto">
         <a class="nav-item nav-link" href="https://twitter.com/dekings83">Twitter</a>
         <a class="nav-item nav-link" href="{% static 'all.pdf' %}">Resume</a>
-        <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+        <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
       </div>
     </div>
   </nav>
+
   </header>
+  <div class="container">
 
   <main role="main">
 
-    <section class="bg-light text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi, I'm Kings</h1>
-        <p class="lead text-muted">Hey! I am Kings, I like making website with python framework called django. Satisfying my client is top of my priority. I will not rest untill you are 100% satisfied.</p>
-        <p>
-          <a href="mailto:dekings44@gmail.com" class="btn btn-primary my-2">Contact Me Today</a>
-        </p>
-        <img src="{% static 'Kingsley.jpg' %}" height="300">
-      </div>
-    </section>
+    <h1 class="text-center pt-3">Welcome To Mr. Kings' Blog</h1>
+    <br />
+    <br />
+    <h2>Latest Posts</h2>
+    <hr />
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
+      <div class="row">
           
 
-          {% for job in jobs.all %}
+          {% for blog in blogs.all %}
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class = "card-img-top" src="{{ job.image.url }}">
+            <div class="card mb-4 shadow-sm container">
+              <a href="{% url 'detail' blog.id %}"><h2> {{ blog.title }}</h2></a>
+              {{ blog.pub_date_pretty }}
+              <img class = "card-img-top" src="{{ blog.image.url }}" height=250>
               <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
+                <p class="card-text">{{ blog.summary }}</p>
               </div>
             </div>
           </div>
@@ -84,10 +78,9 @@
 
           {% endfor %}
         </div>
-      </div>
-    </div>
 
   </main>
+  </div>
 
   <footer class="text-muted">
     <div class="container text-center">
